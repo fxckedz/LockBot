@@ -3,11 +3,9 @@ import {Config} from "../config/Config.js"
 import { MessageHandler } from "./handler/MessageHandler.js"
 
 export class LockBot {
-  private bot: Bot
+  private bot: Bot = new Bot(Config.TOKEN)
 
-  constructor() {
-    this.bot = new Bot(Config.TOKEN)
-  }
+  constructor() {}
 
   private setupHandlers(): void {
     this.bot.command("start", (ctx) => ctx.reply("Olá! Eu sou o LockBot. Para mais informações digite /help."))
