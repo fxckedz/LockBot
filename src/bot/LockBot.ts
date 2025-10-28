@@ -1,5 +1,5 @@
-import {Bot} from "grammy"
-import {Config} from "../config/Config.js"
+import { Bot }  from "grammy"
+import { Config } from "../config/Config.js"
 import { MessageHandler } from "./handler/MessageHandler.js"
 import { CommandHandler } from "./handler/CommandHandler.js"
 
@@ -9,10 +9,13 @@ export class LockBot {
   constructor() {}
 
   private setupHandlers(): void {
-    this.bot.command("start", (ctx) => CommandHandler.handle(ctx))
-    this.bot.command("help", (ctx) => CommandHandler.handle(ctx))
-    this.bot.command("abrir", (ctx) => CommandHandler.handle(ctx))
-    this.bot.command("fechar", (ctx) => CommandHandler.handle(ctx))
+
+    const comands = ["start", "help", "open", "close"]
+
+    comands.forEach(command => {
+      this.bot.command(command, ctx => CommandHandler.handle(ctx))
+    })
+
     this.bot.on("message", ctx => MessageHandler.handle(ctx))
   }
 
