@@ -8,7 +8,7 @@ export class LockBot {
     this.bot = new Bot(Config.TOKEN)
   }
 
-  public start() {
+  public start(): void {
     this.bot.command("start", (ctx) => ctx.reply("Olá! Eu sou o LockBot. Para mais informações digite /help."))
     this.bot.start()
     console.log("🤖LockBot ONLINE")
