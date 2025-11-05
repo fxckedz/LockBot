@@ -2,6 +2,7 @@ import type { Context } from "grammy"
 
 export class CommandHandler {
   static handle(ctx: Context): void {
+
     let command:string = ctx.message?.text as string
 
     if(!command) throw new Error("Command text is undefined")
@@ -22,6 +23,5 @@ export class CommandHandler {
         ctx.reply("🔒Para solicitar o fechamento, envie uma mensagem da seguinte forma: 'close#senha' sem as aspas e sem barra.\n\nExemplo: fechar#123456\n\n⚠️Aviso: Caso a mensagem não siga esse formato, a solicitação será ignorada.")
         break
     }
-
   }
-}   
+}
