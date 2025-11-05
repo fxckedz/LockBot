@@ -1,7 +1,7 @@
 import { Bot }  from "grammy"
-import { Config } from "../config/Config"
-import { MessageHandler } from "./handler/MessageHandler"
-import { CommandHandler } from "./handler/CommandHandler"
+import { Config } from "../config/Config.js"
+import { MessageHandler } from "./handler/MessageHandler.js"
+import { CommandHandler } from "./handler/CommandHandler.js"
 
 export class LockBot {
   private bot: Bot = new Bot(Config.TOKEN)

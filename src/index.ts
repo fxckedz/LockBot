@@ -1,4 +1,4 @@
-import { LockBot } from "./bot/LockBot"
+import { LockBot } from "./bot/LockBot.js"
 
 const lockbot = new LockBot()
 
