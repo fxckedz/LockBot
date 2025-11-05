@@ -5,7 +5,7 @@
     "outDir": "./dist",
 
     // Environment Settings
-    "module": "nodenext",
+    "module": "es6",
     "target": "esnext",
     "lib": ["esnext"],
     "types": ["node"],
@@ -23,7 +23,7 @@
     "skipLibCheck": true,
 
     // Node.js specific optimizations
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node10",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
