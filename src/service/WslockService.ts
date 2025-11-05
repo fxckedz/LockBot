@@ -1,6 +1,7 @@
 /* eslint-disable @stylistic/quotes */
 import axios from "axios"
 import { Config } from "../config/Config.js"
+import parseSoapResponse from "../utils/ParseSoapResponde.js"
 
 class WslockService{
   constructor(
@@ -34,7 +35,9 @@ class WslockService{
       timeout: 10000
     })
 
-    return response.data
+    const soapData = response.data
+
+    return parseSoapResponse.handle(soapData)
   }
 }
 

@@ -5,7 +5,7 @@ import { CommandHandler } from "./handler/CommandHandler.js"
 
 export class LockBot {
   private bot: Bot = new Bot(Config.TOKEN)
-  private comands: string[] = ["start", "help", "open", "close"]
+  private comands: string[] = ["start", "help", "open", "close", "list"]
 
   private setupCommandHandlers(): void {
     this.comands.forEach(command => {
