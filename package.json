@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "dotenv": "^17.2.3",
-    "grammy": "^1.38.3"
+    "grammy": "^1.38.3",
+    "soap": "^1.6.0"
   }
 }
