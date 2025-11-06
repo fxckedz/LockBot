@@ -1,7 +1,8 @@
 /* eslint-disable @stylistic/quotes */
 import axios from "axios"
 import { Config } from "../config/Config.js"
-import parseSoapResponse from "../utils/ParseSoapResponde.js"
+import parseSoapResponse from "../utils/ParseSoapResponseLockList.js"
+import ParseSoapResponseConfirmClosing from "../utils/ParseSoapResponseConfirmClosing.js"
 
 class WslockService{
   constructor(
@@ -74,6 +75,41 @@ class WslockService{
     const soapData = response.data
 
     return parseSoapResponse.handle(soapData)
+
+  }
+
+  async confirmClosing(matricula: string, senhaFechamento: string){
+    
+    const lock = await this.getLockListByUser(matricula)
+    const id = lock[0]?.id.trim()
+
+    const xml = `<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Header>
+<Seguranca xmlns="http://www.pentasis.com.br/">
+<Usuario>${this.login}</Usuario>
+<Senha>${this.escapePassword(this.password)}</Senha>
+</Seguranca>
+</soap:Header>
+<soap:Body>
+<ConfirmClosing xmlns="http://www.pentasis.com.br/">
+<codfechadura>${id}</codfechadura>
+<codigofechamento>${senhaFechamento}</codigofechamento>
+</ConfirmClosing>
+</soap:Body>
+</soap:Envelope>`
+
+    const response = await axios.post(this.url, xml, {
+      headers: {
+        "Content-Type": "text/xml; charset=utf-8",
+        "SOAPAction": "http://www.pentasis.com.br/ConfirmClosing"
+      },
+      timeout: 10000
+    })
+
+    const data = response.data
+
+    return ParseSoapResponseConfirmClosing.handle(data)
 
   }
 

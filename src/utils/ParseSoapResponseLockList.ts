@@ -1,4 +1,4 @@
-class ParseSoapResponse {
+class ParseSoapResponseLockList {
   public handle(xmlData: string): Array<{ id: string; nome: string }> {
     const stringMatches = xmlData.match(/<string>([^<]+)<\/string>/g)
   
@@ -22,5 +22,5 @@ class ParseSoapResponse {
   }
 }
 
-export default new ParseSoapResponse()
+export default new ParseSoapResponseLockList()
 
