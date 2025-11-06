@@ -1,5 +1,4 @@
 import type { Context } from "grammy"
-import wslockService from "../../service/WslockService.js"
 
 export class CommandHandler {
   static async handle(ctx: Context): Promise<void> {
@@ -23,13 +22,6 @@ export class CommandHandler {
       case "close":
         ctx.reply("🔒Para solicitar o fechamento, envie uma mensagem da seguinte forma: 'close#senha' sem as aspas e sem barra.\n\nExemplo: fechar#123456\n\n⚠️Aviso: Caso a mensagem não siga esse formato, a solicitação será ignorada.")
         break
-      case "list":{
-        const locks = await wslockService.getLocksList()
-
-        locks.forEach(lock => {
-          ctx.reply(`id: ${lock.id} - Nome: ${lock.nome}`)
-        })
-      }
     }
   }
 }
